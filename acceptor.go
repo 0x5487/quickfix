@@ -288,11 +288,11 @@ func (a *Acceptor) handleConnection(netConn net.Conn) {
 		TargetCompID: string(senderCompID), TargetSubID: string(senderSubID), TargetLocationID: string(senderLocationID),
 	}
 
-	localConnectionPort := netConn.LocalAddr().(*net.TCPAddr).Port
-	if expectedPort, ok := a.sessionHostPort[sessID]; !ok || expectedPort != localConnectionPort {
-		a.globalLog.OnEventf("Session %v not found for incoming message: %s", sessID, msgBytes)
-		return
-	}
+	// localConnectionPort := netConn.LocalAddr().(*net.TCPAddr).Port
+	// if expectedPort, ok := a.sessionHostPort[sessID]; !ok || expectedPort != localConnectionPort {
+	// 	a.globalLog.OnEventf("Session %v not found for incoming message: %s", sessID, msgBytes)
+	// 	return
+	// }
 
 	// We have a session ID and a network connection. This seems to be a good place for any custom authentication logic.
 	if a.connectionValidator != nil {
